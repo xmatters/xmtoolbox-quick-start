@@ -1,0 +1,23 @@
+{
+  "name": "xMattersSync",
+  "keywords:": [
+    "xMatters",
+    "Sync",
+    "Synchronization",
+    "Data",
+    "IT",
+    "Event",
+    "Management",
+    "Notifications",
+    "Email",
+    "Push",
+    "SMS"
+  ],
+  "version": "1.0.0",
+  "description": "This project contains example node.js applications scripts that can be used to synchronize data with xMatters. The source of the data can be a file, multiple files, or another xMatters instance.",
+  "author": "Brannon Vann",
+  "license": "MIT",
+  "dependencies": {
+    "xmtoolbox": "^1.0.3"
+  }
+}
