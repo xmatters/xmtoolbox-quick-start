@@ -1,11 +1,11 @@
-const xm = require('xmtoolbox');
-const { np, prod } = require('./config');
+const { np, prod, xm } = require('./config');
 
 const options = {
-  syncPeople: true,
-  syncDevices: true,
-  syncGroups: true,
-  syncShifts: true
+  people: true,
+  peopleFilter: p => p.targetName.startsWith('U001'),
+  devices: true,
+  groups: true,
+  shifts: true
 };
 
 (async () => {

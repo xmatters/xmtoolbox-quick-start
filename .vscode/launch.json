@@ -7,6 +7,27 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "MM1-DryRun",
+      "program": "${workspaceFolder}/custom/MM1-DryRun.js",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "MM2-GroupsWithoutShifts",
+      "program": "${workspaceFolder}/custom/MM2-GroupsWithoutShifts.js",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Send To Flow",
+      "program": "${workspaceFolder}/SendToFlow.js",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Backup",
       "program": "${workspaceFolder}/Backup.js",
       "skipFiles": ["<node_internals>/**"]

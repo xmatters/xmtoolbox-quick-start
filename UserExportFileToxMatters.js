@@ -1,9 +1,9 @@
-const xm = require('xmtoolbox');
-const { np, prod } = require('./config');
+const { np, xm } = require('./config');
 
-UserUploadToxMatters('./examples/userupload.10.csv', np);
+UserUploadToxMatters('./examples/userupload.100.csv', np);
 
 async function UserUploadToxMatters(path, env) {
+  env.log.time('Upload');
   const peopleFields = [
     //'externalKey',
     //'externallyOwned',
@@ -17,21 +17,25 @@ async function UserUploadToxMatters(path, env) {
     'roles',
     'site',
     'status',
-    'supervisors',
+    //'supervisors',
     'targetName',
     'timezone',
     'webLogin'
   ];
 
+  const deviceFields = ['name', 'deviceType', 'owner', 'recipientType', 'emailAddress', 'targetName'];
+
   const syncOptions = {
-    syncPeople: true,
-    syncDevices: true,
-    peopleOptions: { fields: peopleFields }
+    people: true,
+    devices: true,
+    peopleOptions: { fields: peopleFields },
+    devicesOptions: { fields: deviceFields }
   };
 
-  const json = await xm.util.csvToJsonFromFile(path);
+  const json = await xm.util.CsvToJsonFromFile(path);
 
-  const data = await xm.sync.userUploadToImport(json, env);
+  const data = await xm.sync.UserUploadToImport(json, env);
 
   await xm.sync.DataToxMatters(data, env, syncOptions);
+  env.log.timeEnd('Upload');
 }

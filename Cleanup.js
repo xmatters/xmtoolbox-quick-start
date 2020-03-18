@@ -1,9 +1,8 @@
-const xm = require('xmtoolbox');
-const { np } = require('./config');
+const { np, xm } = require('./config');
 
-DeleteGroups(np, { search: 'Example Group' });
+//DeleteGroups(np, { search: 'Example Group' });
 DeletePeople(np, { search: 'U0' });
-DeleteSites(np);
+//DeleteSites(np);
 
 async function DeletePeople(env, query) {
   const people = await xm.people.getMany(env, query);

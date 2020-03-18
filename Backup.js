@@ -1,6 +1,5 @@
+const { np, xm } = require('./config');
 const fs = require('fs');
-const xm = require('xmtoolbox');
-const { np } = require('./config');
 
 const extractOptions = {
   audits: true,
@@ -32,7 +31,9 @@ const extractOptions = {
 const path = `./data/${np.subdomain}.all.json`;
 
 (async () => {
+  console.time('Backup');
   const data = await xm.sync.ExtractData(np, extractOptions);
   const text = JSON.stringify(data, null, 2);
   fs.writeFileSync(path, text);
+  console.timeEnd('Backup');
 })();

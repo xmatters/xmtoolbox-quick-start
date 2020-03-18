@@ -1,12 +1,11 @@
-const xm = require('xmtoolbox');
-const { np, prod } = require('./config');
+const { np, prod, xm } = require('./config');
 
 const peoplePath = './examples/people.csv';
 const groupsPath = './examples/groups.csv';
 
-SyncPeopleAndGroups(np);
+peopleAndGroups(np);
 
-async function SyncPeopleAndGroups(env) {
+async function peopleAndGroups(env) {
   const peopleFields = [
     //'externalKey',
     //'externallyOwned',
@@ -29,10 +28,10 @@ async function SyncPeopleAndGroups(env) {
   const groupFields = ['name', 'description'];
 
   const syncOptions = {
-    syncPeople: true,
-    syncDevices: true,
+    people: true,
+    devices: true,
     peopleOptions: { fields: peopleFields },
-    syncGroups: true,
+    groups: true,
     groupTransform: (group, sourceData, destinationData) => {
       group.description &= 'TRANSFORMED ';
       return group;
