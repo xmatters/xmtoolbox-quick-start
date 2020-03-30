@@ -76,3 +76,7 @@ This demonstrates how to read in a csv (Comma Separated Value) file for people a
 ### UserExportFileToxMatters.js
 
 This is an example of synchronizing the xMatters Users Export formatted file to xMatters. This can be created from scratch or downloaded from xMatters using the Users --> Export.
+
+### WhosOnCallToHTML.js
+
+This will extract all groups from your production environment and write to a very simple HTML page in table form.

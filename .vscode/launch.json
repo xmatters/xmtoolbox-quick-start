@@ -7,15 +7,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "MM1-DryRun",
-      "program": "${workspaceFolder}/custom/MM1-DryRun.js",
-      "skipFiles": ["<node_internals>/**"]
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "MM2-GroupsWithoutShifts",
-      "program": "${workspaceFolder}/custom/MM2-GroupsWithoutShifts.js",
+      "name": "Custom",
+      "program": "${workspaceFolder}/custom/custom.js",
       "skipFiles": ["<node_internals>/**"]
     },
     {
@@ -37,7 +30,7 @@
       "request": "launch",
       "name": "Cleanup",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/cleanup.js"
+      "program": "${workspaceFolder}/Cleanup.js"
     },
     {
       "type": "node",
