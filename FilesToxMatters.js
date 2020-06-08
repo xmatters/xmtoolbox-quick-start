@@ -1,6 +1,6 @@
 const { np, prod, xm } = require('./config');
 
-const peoplePath = './examples/people.csv';
+const peoplePath = './examples/userupload.10.csv';
 const groupsPath = './examples/groups.csv';
 
 peopleAndGroups(np);
@@ -22,13 +22,16 @@ async function peopleAndGroups(env) {
     'supervisors',
     'targetName',
     'timezone',
-    'webLogin'
+    'webLogin',
   ];
+
+  const deviceFields = ['deviceType', 'name', 'owner', 'targetName', 'emailAddress', 'phoneNumber'];
 
   const groupFields = ['name', 'description'];
 
   const syncOptions = {
     people: true,
+    devicesOptions: { fields: deviceFields },
     devices: true,
     peopleOptions: { fields: peopleFields },
     groups: true,
@@ -36,17 +39,17 @@ async function peopleAndGroups(env) {
       group.description &= 'TRANSFORMED ';
       return group;
     },
-    groupsFilter: g => g.targetName.startWith('Example Group'),
-    groupsOptions: { fields: groupFields }
+    groupsFilter: g => g.targetName.startsWith('Example Group'),
+    groupsOptions: { fields: groupFields },
   };
 
-  const json = await util.csvToJsonFromFile(peoplePath);
+  const json = await xm.util.CsvToJsonFromFile(peoplePath);
 
   const devices = [];
   const people = [];
   const removePeople = [];
-  const people = json.map(row => {
-    if (row('Operation') === 'remove') {
+  json.map(row => {
+    if (row.Operation === 'remove') {
       removePeople.push(row.User);
     }
 
@@ -58,7 +61,7 @@ async function peopleAndGroups(env) {
     person.status = 'ACTIVE';
     if (row['First Name']) person.firstName = row['First Name'];
     if (row['Last Name']) person.lastName = row['Last Name'];
-    if (row.Language) person.language = dictionary.language.codeByName[row.Language];
+    if (row.Language) person.language = xm.dictionary.language.codeByName[row.Language];
     if (row['Time Zone']) person.timezone = row['Time Zone'];
     if (row.User) person.webLogin = row.User;
     if (row.Role) person.roles = row.Role.split('|');
@@ -74,7 +77,8 @@ async function peopleAndGroups(env) {
         deviceType: 'EMAIL',
         name: 'Work Email',
         owner: row.User,
-        targetName: `${row.User}|${row['Work Email']}`
+        targetName: `${row.User}|Work Email`,
+        emailAddress: row['Work Email'],
       });
     }
 
@@ -83,7 +87,8 @@ async function peopleAndGroups(env) {
         deviceType: 'EMAIL',
         name: 'Home Email',
         owner: row.User,
-        targetName: `${row.User}|${row['Home Email']}`
+        targetName: `${row.User}|Home Email`,
+        emailAddress: row['Home Email'],
       });
     }
 
@@ -92,7 +97,8 @@ async function peopleAndGroups(env) {
         deviceType: 'TEXT_PHONE',
         name: 'SMS Phone',
         owner: row.User,
-        targetName: `${row.User}|${row['SMS Phone']}`
+        targetName: `${row.User}|SMS Phone`,
+        phoneNumber: row['SMS Phone'],
       });
     }
 
@@ -101,15 +107,21 @@ async function peopleAndGroups(env) {
         deviceType: 'VOICE',
         name: 'Work Phone',
         owner: row.User,
-        targetName: `${row.User}|${row['Work Phone']}`
+        targetName: `${row.User}|Work Phone`,
+        phoneNumber: row['Work Phone'],
       });
     }
   });
 
-  const groups = await util.csvToJsonFromFile(groupsPath);
+  const groups = await xm.util.CsvToJsonFromFile(groupsPath);
 
   const data = { people, groups, devices };
-  await sync.DataToxMatters(data, env, syncOptions);
+  const { syncResults } = await xm.sync.DataToxMatters(data, env, syncOptions);
+
+  if (syncResults.failure) {
+    console.log('sync failed');
+    console.log(...prod.errors.map(e => e.message));
+  }
 
   await Promise.all(removePeople.map(targetName => xm.people.delete(env, targetName)));
 }
