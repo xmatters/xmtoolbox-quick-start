@@ -19,10 +19,10 @@ const NP_PASSWORD = process.env.NP_PASSWORD || 'PASSWORD_HERE';
 exports.xm = xm;
 
 exports.prod = xm.environments.create(PROD_SUBDOMAIN, PROD_USERNAME, PROD_PASSWORD, {
-  logLevel: 'info'
-  //readOnly: true
+  logLevel: 'info',
+  readOnly: false,
 });
 exports.np = xm.environments.create(NP_SUBDOMAIN, NP_USERNAME, NP_PASSWORD, {
-  logLevel: 'info'
-  //readOnly: true
+  logLevel: 'info',
+  readOnly: false,
 });

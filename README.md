@@ -53,9 +53,13 @@ The examples explained below cover a small subset of the available functionality
 
 This is an example of sending data to a xMatters Workflow Flow and reporting on data within xMatters. In this case it's looking for groups that contain groups but this could be any supported object and with any qualifiers.
 
+### GetGroup.js
+
+In this script, the xmtoolbox is used to get a single group named "Database Operations" from xMatters and writes to the console.
+
 ### xMattersToxMatters.js
 
-This is an example of synchronizing a xMatters production environment to non-production xMatters instance. It synchronizes people, devices, groups, and shifts in non-mirror mode. Data will not be deleted from either environment however where matching records are found it will be updated in the destination. A default supervisor will be used in the event any matching supervisors are not found in non-production.
+This is an example of synchronizing a xMatters production environment to non-production xMatters instance. It synchronizes people in non-mirror mode. Data will not be deleted from either environment however where matching records are found it will be updated in the destination. A default supervisor will be used in the event any matching supervisors are not found in non-production.
 
 ### Cleanup.js
 
@@ -71,7 +75,7 @@ This demonstrates how to read in a single JSON file that has many data objects r
 
 ### FilesToxMatters.js
 
-This demonstrates how to read in a csv (Comma Separated Value) file for people and devices and one for groups. Then, synchronizing a that data into an xMatters instance. The file is the same one that is produced in the Extract.js example.
+This demonstrates how to read in a csv (Comma Separated Value) file for people and devices and a csv file for groups. Then, synchronizing a that data into an xMatters instance. The referenced example files are included in the example directory of this project.
 
 ### UserExportFileToxMatters.js
 

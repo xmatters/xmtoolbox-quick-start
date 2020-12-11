@@ -1,7 +1,11 @@
-const { prod, xm } = require('./config');
+// See README.md for a description of this script.
+const { np, prod, xm } = require('./config');
+
+const env = prod;
+const path = `./data/${env.subdomain}-xMattersWhosOnCall.html`;
 
 (async () => {
-  const { onCall } = await xm.sync.ExtractData(prod, { onCall: true, groups: true });
+  const { onCall } = await xm.sync.ExtractData(env, { onCall: true, groups: true });
 
   const top = `<h1>Who is on call?</h1>`;
 
@@ -26,5 +30,5 @@ const { prod, xm } = require('./config');
   const tableBottom = `</tbody></table>`;
 
   const html = top + tableTop + tableRows + tableBottom;
-  require('fs').writeFileSync('./data/xMattersWhosOnCall.html', html);
+  require('fs').writeFileSync(path, html);
 })();
