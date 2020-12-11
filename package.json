@@ -13,11 +13,11 @@
     "Push",
     "SMS"
   ],
-  "version": "1.0.2",
-  "description": "This project contains example node.js applications scripts that can be used to interact with xMatters data.",
+  "version": "1.0.3",
+  "description": "This project contains example node.js applications scripts that can be used to interact with xMatters.",
   "author": "Brannon Vann",
   "license": "MIT",
   "dependencies": {
-    "xmtoolbox": "^1.0.13"
+    "xmtoolbox": "1.0.x"
   }
 }
