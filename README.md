@@ -27,7 +27,7 @@ This package has the ability to modify data within your xMatters for good and ba
 
 ## Setup
 
-1. Click "Use This Template" from the github page, download, or fork this project to a local directory.
+1. Click "Use This Template" from the github page, download, or clone this project to a local directory. `git clone https://github.com/brannonvann/xmtoolbox-quick-start.git FOLDER_NAME_HERE`
 1. Install latest [node.js](https://nodejs.org/en/download/)
 1. Run `npm install` from the directory where this was downloaded locally in a MacOS or Linux terminal or Windows command prompt.
 1. Rename the provided `example.config.js` to `config.js` and updated with your credentials. If you are using environment variables to store your credentials, no further update is needed.

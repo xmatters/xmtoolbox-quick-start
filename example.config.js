@@ -8,6 +8,7 @@ const xm = require('xmtoolbox');
 
 //Set credentials environment variables or in this file by replaceing the examples below.
 //Defaults to using environment variables if they are set.
+// xMatters API keys may be used rather than one's username/password. https://help.xmatters.com/ondemand/user/apikeys.htm
 const PROD_SUBDOMAIN = process.env.PROD_SUBDOMAIN || 'company'; //company from url--> https://company.xmatters.com
 const PROD_USERNAME = process.env.PROD_USERNAME || 'restuser';
 const PROD_PASSWORD = process.env.PROD_PASSWORD || 'PASSWORD_HERE';
