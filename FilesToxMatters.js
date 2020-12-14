@@ -32,6 +32,8 @@ async function peopleAndGroups() {
 
   const groupFields = ['name', 'description'];
 
+  // All of these options are optional. These are included for example purposes.
+  // Docs:  https://brannonvann.github.io/xmtoolbox/module-sync.html#~SyncOptions
   const syncOptions = {
     people: true,
     devicesOptions: { fields: deviceFields },
@@ -39,11 +41,14 @@ async function peopleAndGroups() {
     peopleOptions: { fields: peopleFields },
     groups: true,
     groupTransform: (group, sourceData, destinationData) => {
-      group.description &= 'TRANSFORMED ';
+      if (!destinationData.groups.find(g => g.targetName === group.targetName)) {
+        group.description = '[NEW] ' + group.description;
+      }
       return group;
     },
     groupsFilter: g => g.targetName.startsWith('Example Group'),
     groupsOptions: { fields: groupFields },
+    groupsQuery: { search: 'Example Group' },
     dataExtracted: (destinationData, destinationEnv, sourceData, sourceEnv) => {
       const text = JSON.stringify(destinationData);
       const date = new Date();
