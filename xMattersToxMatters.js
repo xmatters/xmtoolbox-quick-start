@@ -1,9 +1,10 @@
 // See README.md for a description of this script.
 const { np, prod, xm } = require('./config');
+const fs = require('fs');
 
 const options = {
   people: true,
-  peopleFilter: p => p.targetName.startsWith('U001'),
+  peopleFilter: p => p.targetName.startsWith('U000'),
   //devicesFilter: d => d.targetName.includes('bvann'),
   //devices: true,
   //groups: true,
