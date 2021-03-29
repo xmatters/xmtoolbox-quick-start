@@ -1,11 +1,14 @@
+// See README.md for a description of this script.
+const fs = require('fs');
 const { np, prod, xm } = require('./config');
 
+const env = np;
 const peoplePath = './examples/userupload.10.csv';
 const groupsPath = './examples/groups.csv';
 
-peopleAndGroups(np);
+peopleAndGroups();
 
-async function peopleAndGroups(env) {
+async function peopleAndGroups() {
   const peopleFields = [
     //'externalKey',
     //'externallyOwned',
@@ -29,6 +32,8 @@ async function peopleAndGroups(env) {
 
   const groupFields = ['name', 'description'];
 
+  // All of these options are optional. These are included for example purposes.
+  // Docs:  https://brannonvann.github.io/xmtoolbox/module-sync.html#~SyncOptions
   const syncOptions = {
     people: true,
     devicesOptions: { fields: deviceFields },
@@ -36,11 +41,20 @@ async function peopleAndGroups(env) {
     peopleOptions: { fields: peopleFields },
     groups: true,
     groupTransform: (group, sourceData, destinationData) => {
-      group.description &= 'TRANSFORMED ';
+      if (!destinationData.groups.find(g => g.targetName === group.targetName)) {
+        group.description = '[NEW] ' + group.description;
+      }
       return group;
     },
     groupsFilter: g => g.targetName.startsWith('Example Group'),
     groupsOptions: { fields: groupFields },
+    groupsQuery: { search: 'Example Group' },
+    dataExtracted: (destinationData, destinationEnv, sourceData, sourceEnv) => {
+      const text = JSON.stringify(destinationData);
+      const date = new Date();
+      const path = `./data/${destinationEnv.subdomain}-${date.toISOString()}.backup.json`;
+      fs.writeFileSync(path, text);
+    },
   };
 
   const json = await xm.util.CsvToJsonFromFile(peoplePath);
@@ -119,9 +133,10 @@ async function peopleAndGroups(env) {
   const { syncResults } = await xm.sync.DataToxMatters(data, env, syncOptions);
 
   if (syncResults.failure) {
-    console.log('sync failed');
-    console.log(...prod.errors.map(e => e.message));
+    console.log('upload failed');
+    console.log(...env.errors.map(e => e.message));
+  } else {
+    //remove anyone who was marked as 'remove' using the operation column in csv
+    await Promise.all(removePeople.map(targetName => xm.people.delete(env, targetName)));
   }
-
-  await Promise.all(removePeople.map(targetName => xm.people.delete(env, targetName)));
 }

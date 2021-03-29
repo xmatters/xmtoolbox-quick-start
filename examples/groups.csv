@@ -1,0 +1,7 @@
+targetName,description
+Example Group 1,This is an example Group. You can add more fields to sync if you would like.
+Example Group 2,This is another example. Add more groups if you you would like. 
+Example Group 3,The data needs to match the field names as defined in the xMatters REST API.
+Example Group 4,If the field names or values don't match what the rest API requires you.
+Example Group 5,will need to alter them. This can be done before loading the data 
+Example Group 6,with userUploadToImport or after using the groupTransform sync option.

@@ -1,6 +1,7 @@
-const { np, xm } = require('./config');
+const { prod, np, xm } = require('./config');
+const env = np;
 
-UserUploadToxMatters('./examples/userupload.100.csv', np);
+UserUploadToxMatters('./examples/userupload.100.csv', env);
 
 async function UserUploadToxMatters(path, env) {
   env.log.time('Upload');
@@ -20,7 +21,7 @@ async function UserUploadToxMatters(path, env) {
     //'supervisors',
     'targetName',
     'timezone',
-    'webLogin'
+    'webLogin',
   ];
 
   const deviceFields = ['name', 'deviceType', 'owner', 'recipientType', 'emailAddress', 'targetName'];
@@ -29,7 +30,7 @@ async function UserUploadToxMatters(path, env) {
     people: true,
     devices: true,
     peopleOptions: { fields: peopleFields },
-    devicesOptions: { fields: deviceFields }
+    devicesOptions: { fields: deviceFields },
   };
 
   const json = await xm.util.CsvToJsonFromFile(path);
