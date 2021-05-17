@@ -22,8 +22,10 @@ exports.xm = xm;
 exports.prod = xm.environments.create(PROD_SUBDOMAIN, PROD_USERNAME, PROD_PASSWORD, {
   logLevel: 'info',
   readOnly: false,
+  //proxy: { port: 8001, host: '10.10.10.123' },
 });
 exports.np = xm.environments.create(NP_SUBDOMAIN, NP_USERNAME, NP_PASSWORD, {
   logLevel: 'info',
   readOnly: false,
+  //proxy: { port: 8001, host: '10.10.10.123' },
 });
