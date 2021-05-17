@@ -53,6 +53,10 @@ The examples explained below cover a small subset of the available functionality
 
 This is an example of sending data to a xMatters Workflow Flow and reporting on data within xMatters. In this case it's looking for groups that contain groups but this could be any supported object and with any qualifiers.
 
+### GroupCSVReport.js
+
+This will extract all groups from your production environment and write the contents to a CSV file containing the group name and the supervisors.
+
 ### GetGroup.js
 
 In this script, the xmtoolbox is used to get a single group named "Database Operations" from xMatters and writes to the console.
