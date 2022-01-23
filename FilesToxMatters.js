@@ -30,7 +30,7 @@ async function peopleAndGroups() {
 
   const deviceFields = ['deviceType', 'name', 'owner', 'targetName', 'emailAddress', 'phoneNumber'];
 
-  const groupFields = ['name', 'description'];
+  const groupFields = ['targetName', 'description'];
 
   // All of these options are optional. These are included for example purposes.
   // Docs:  https://brannonvann.github.io/xmtoolbox/module-sync.html#~SyncOptions
