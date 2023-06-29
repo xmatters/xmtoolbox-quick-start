@@ -15,9 +15,9 @@ The source of the data can be:
 - Multiple files
 - Another xMatters instance
 
-The included [examples](#Examples) are explained below. This project leverages [xmtoolbox](https://www.npmjs.com/package/xmtoolbox) which is a npm package that makes it simpler to interact with the xMatters APIs and contains some utilities to assist with the movement of xMatters. Please refer to the xmtoolbox documentation available [https://brannonvann.github.io/xmtoolbox/](https://brannonvann.github.io/xmtoolbox/) for other available functionality. xMatters REST API Documentation is available [here](https://help.xmatters.com/xmapi/index.html)
-
-[xmtoolbox API docs](https://brannonvann.github.io/xmtoolbox/index.html) | [xmtoolbox@npm](https://www.npmjs.com/package/xmtoolbox) | [xmtoolbox@github](https://github.com/brannonvann/xmtoolbox)
+The included [examples](#Examples) are explained below. This project leverages [xmtoolbox](https://www.npmjs.com/package/xmtoolbox) which is a npm package that makes it simpler to interact with the xMatters APIs and contains some utilities to assist with the movement of xMatters. Please refer to the xmtoolbox documentation available [https://xmatters.github.io/xmtoolbox/](https://xmatters.github.io/xmtoolbox/) for other available functionality. xMatters REST API Documentation is available [here](https://help.xmatters.com/xmapi/index.html)
+https://xmatters.github.io/xmtoolbox/
+[xmtoolbox API docs](https://xmatters.github.io/xmtoolbox/) | [xmtoolbox@npm](https://www.npmjs.com/package/xmtoolbox) | [xmtoolbox@github](https://github.com/brannonvann/xmtoolbox)
 
 This project can be run locally or deployed to a PaaS solution such as Heroku.
 
@@ -47,7 +47,7 @@ You can update the referenced packages, including xmtoolbox, by using the comman
 
 ## Examples
 
-The examples explained below cover a small subset of the available functionality. There is a lot more data that can be synchronized, migrated, backed-up, restores, and reported on, with a small change to the scripts. These examples have been created to cover the most common situations. Refer to the [xmtoolbox documentation](https://brannonvann.github.io/xmtoolbox/) for more information on the any of the data modules that are leveraged by this project.
+The examples explained below cover a small subset of the available functionality. There is a lot more data that can be synchronized, migrated, backed-up, restores, and reported on, with a small change to the scripts. These examples have been created to cover the most common situations. Refer to the [xmtoolbox documentation](https://xmatters.github.io/xmtoolbox/) for more information on the any of the data modules that are leveraged by this project.
 
 ### SendToFlow.js
 
